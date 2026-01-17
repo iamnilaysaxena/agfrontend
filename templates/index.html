@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Load Balancer Demo</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Load Balancer Demo</h2>
+        <div>
+            <a href="/">Dashboard</a>
+            <a href="/entries">Entries</a>
+        </div>
+    </div>
+
+    {% if ask_name %}
+    <div class="card center">
+        <h3>Welcome</h3>
+        <form method="post">
+            <input name="name" placeholder="Enter your name" required />
+            <button type="submit">Start</button>
+        </form>
+    </div>
+    {% else %}
+
+    <div class="grid">
+        <div class="card">
+            <img src="https://img.icons8.com/fluency/96/laptop.png">
+            <h3>Frontend Instance</h3>
+            <p>{{ fe_instance }}</p>
+        </div>
+
+        <div class="card">
+            <img src="https://img.icons8.com/fluency/96/server.png">
+            <h3>Backend Instance</h3>
+            <p>{{ be_instance }}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Summary – FE ↔ BE Pair</h3>
+        <table>
+            <tr>
+                <th>FE Instance</th>
+                <th>BE Instance</th>
+                <th>Count</th>
+            </tr>
+            {% for row in summary.by_instance_pair %}
+            <tr>
+                <td>{{ row.fe_instance }}</td>
+                <td>{{ row.be_instance }}</td>
+                <td>{{ row.count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="card">
+        <h3>Summary – User Hits</h3>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Total Hits</th>
+            </tr>
+            {% for row in summary.by_user %}
+            <tr>
+                <td>{{ row.user_name }}</td>
+                <td>{{ row.count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% endif %}
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Entries</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Load Balancer Demo</h2>
+        <div>
+            <a href="/">Dashboard</a>
+            <a href="/entries">Entries</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>All Entries</h3>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>FE</th>
+                <th>BE</th>
+                <th>IP</th>
+                <th>Timestamp</th>
+            </tr>
+            {% for e in entries %}
+            <tr>
+                <td>{{ e.user }}</td>
+                <td>{{ e.fe }}</td>
+                <td>{{ e.be }}</td>
+                <td>{{ e.ip }}</td>
+                <td>{{ e.ts }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+
+</html>
